@@ -2,8 +2,9 @@ import Image from "next/image";
 import React from "react";
 import { BsBell, BsBookmark, BsEnvelope, BsTwitter } from "react-icons/bs";
 import { BiHomeCircle, BiHash, BiUser, BiMoney } from "react-icons/bi";
-import FeedCard from "@/components/page";
 import { SlOptions } from "react-icons/sl";
+import FeedCard from "../components/FeedCard";
+import SigninWithGoogle from "@/components/SigninWithGoogle";
 
 interface TwitterSidebarButton {
   title: string;
@@ -73,7 +74,12 @@ export default function Home() {
           <FeedCard />
           <FeedCard />
         </div>
-        <div className="col-span-3 "></div>
+        <div className="col-span-3 ">
+          <div className="border p-5 bg-slate-700 rounded-lg">
+            <h1 className="text-2xl my-2">New to Twitter ?</h1>
+          <SigninWithGoogle />
+          </div>
+        </div>
       </div>
     </div>
   );
