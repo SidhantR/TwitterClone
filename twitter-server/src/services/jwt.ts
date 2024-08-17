@@ -6,7 +6,7 @@ const JWT_SECRET="$idh@nt"
 
 class JWTService {
     public static async generateTokenForUser(user: User){
-        const user = await prismaClient.user.findUnique({where: {id: userId}})
+        // const user = await prismaClient.user.findUnique({where: {id: userId}})
         const payload= {
             id: user?.id,
             email: user?.email

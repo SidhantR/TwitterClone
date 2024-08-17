@@ -77,7 +77,7 @@ export default function Home() {
         <div className="col-span-3 ">
           <div className="border p-5 bg-slate-700 rounded-lg">
             <h1 className="text-2xl my-2">New to Twitter ?</h1>
-          <SigninWithGoogle />
+            <SigninWithGoogle />
           </div>
         </div>
       </div>
