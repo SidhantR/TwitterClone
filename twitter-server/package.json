@@ -18,9 +18,13 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "@prisma/client": "^5.15.0",
+    "@types/cors": "^2.8.17",
     "axios": "^1.7.2",
     "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "D": "^1.0.0",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2"
   }

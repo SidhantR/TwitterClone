@@ -35,7 +35,6 @@ const queries = {
             responseType: 'json'
         })
 
-
         const user = await prismaClient.user.findUnique({where: {email: data.email}})
         if(!user){        //creating user if it does not exist in db
             await prismaClient.user.create({
@@ -50,7 +49,7 @@ const queries = {
         const userInDb = await prismaClient.user.findUnique({where: {email: data.email}})
         if(!userInDb) throw new Error("User with email not found")
 
-        const userToken = JWTService.generateTokenForUser(userInDb)
+        const userToken = await JWTService.generateTokenForUser(userInDb)
         return userToken
     }
 }

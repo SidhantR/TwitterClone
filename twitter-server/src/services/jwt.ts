@@ -11,6 +11,7 @@ class JWTService {
             id: user?.id,
             email: user?.email
         }
+        console.log('-------', payload)
         const token = JWT.sign(payload, JWT_SECRET)
         return token
     }
