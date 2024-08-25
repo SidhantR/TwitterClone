@@ -1,6 +1,6 @@
 'use client'
 import { graphqlClient } from '@/clients/api'
-import verifyUserGoogleTokenQuery from '@/graphql/query/user'
+import {verifyUserGoogleTokenQuery} from '@/graphql/query/user'
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google'
 import React, { useCallback } from 'react'
 import toast from 'react-hot-toast'
