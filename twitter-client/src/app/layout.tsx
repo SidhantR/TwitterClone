@@ -3,6 +3,8 @@ import { Inter, Quicksand } from "next/font/google";
 import "./globals.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Toaster } from 'react-hot-toast';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import QueryProvider from "./QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 const quickSand = Quicksand({ subsets: ["latin"] })
@@ -21,8 +23,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={quickSand.className}>
         <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID || ''}>
-          {children}
-          <Toaster />
+          <QueryProvider>
+            {children}
+            <Toaster />
+          </QueryProvider>
         </GoogleOAuthProvider>
       </body>
     </html>

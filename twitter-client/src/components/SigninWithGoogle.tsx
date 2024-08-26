@@ -2,24 +2,36 @@
 import { graphqlClient } from '@/clients/api'
 import {verifyUserGoogleTokenQuery} from '@/graphql/query/user'
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google'
+import { useQueryClient } from '@tanstack/react-query'
 import React, { useCallback } from 'react'
 import toast from 'react-hot-toast'
 
 const SigninWIthGoogle = () => {
 
+  const queryClient = useQueryClient()
+
   const handleLoginWithGoogle = useCallback(async(cred: CredentialResponse) => {
     const googleToken = cred.credential
     if(!googleToken) return toast.error('Google token not found')
 
-    const {verifyGoogleToken} = await graphqlClient.request(
-      verifyUserGoogleTokenQuery, {token: googleToken}
-    )
+    try{
+      const {verifyGoogleToken} = await graphqlClient.request(
+        verifyUserGoogleTokenQuery, {token: googleToken}
+      )
+  
+      toast.success('Verified Success')
+      console.log(verifyGoogleToken, '-------->verifyGoogleToken')
+      if(verifyGoogleToken) window.localStorage.setItem('__twitter_token', verifyGoogleToken)
+  
+      //invaidate query and again make request to get current user
+      await queryClient.invalidateQueries(["current-user"])
 
-    toast.success('Verified Success')
-    console.log(verifyGoogleToken, '-------->verifyGoogleToken')
-    if(verifyGoogleToken) window.localStorage.setItem('__twitter_token', verifyGoogleToken)
+    } catch(err){
+      toast.error('Verification Failed')
+      console.error('Error verifying google Token',err)
+    }
 
-  }, [])
+  }, [queryClient])
   
   return (
     <>

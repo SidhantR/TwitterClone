@@ -29,11 +29,22 @@ export async function initServer() {
 
     app.use('/graphql', expressMiddleware(graphqlServer, {
       context: async ({req,res}) => {
-        return {
-          user: req.headers.authorization 
-          ? JWTService.decodeToken(req.headers.authorization.split("Bearer ")[1]) 
-          : undefined
+        let user = undefined; // Adjust `User` type to match your decoded JWT structure
+
+        const authHeader = req.headers.authorization;
+
+        if (authHeader && authHeader.startsWith('Bearer ')) {
+            const token = authHeader.split('Bearer ')[1];
+            try {
+                user = JWTService.decodeToken(token);
+            } catch (error) {
+                console.error('Error decoding token:', error);
+                user = undefined;
+            }
         }
+        return {
+            user,
+        };
       }
     }))
     

@@ -1,10 +1,11 @@
-import Image from "next/image";
+"use client"
 import React from "react";
 import { BsBell, BsBookmark, BsEnvelope, BsTwitter } from "react-icons/bs";
 import { BiHomeCircle, BiHash, BiUser, BiMoney } from "react-icons/bi";
 import { SlOptions } from "react-icons/sl";
 import FeedCard from "../components/FeedCard";
 import SigninWithGoogle from "@/components/SigninWithGoogle";
+import { useCurrentUser } from "@/hooks/user";
 
 interface TwitterSidebarButton {
   title: string;
@@ -47,6 +48,9 @@ const sideBarMenuIcons: TwitterSidebarButton[] = [
 ]
 
 export default function Home() {
+
+  const user = useCurrentUser()
+  console.log(user, 'useruseruser')
   return (
     <div>
       <div className="grid grid-cols-12 h-screen w-screen px-56">

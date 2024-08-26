@@ -1,9 +1,19 @@
 import { graphql } from "../../gql";
 
-const verifyUserGoogleTokenQuery = graphql(`#graphql
+export const verifyUserGoogleTokenQuery = graphql(`#graphql
     query VerifyUserGoogleToken($token: String!) {
         verifyGoogleToken(token: $token)
     }
 `);
 
-export default verifyUserGoogleTokenQuery
+export const getCurrentUserQuery = graphql(`#graphql
+    query GetCurrentUser {
+        getCurrentUser {
+            id
+            profileImageUrl
+            email
+            firstName
+            lastName
+        }
+    }
+`)
