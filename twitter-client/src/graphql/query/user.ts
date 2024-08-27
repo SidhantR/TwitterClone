@@ -10,7 +10,7 @@ export const getCurrentUserQuery = graphql(`#graphql
     query GetCurrentUser {
         getCurrentUser {
             id
-            profileImageUrl
+            profileImageURL
             email
             firstName
             lastName

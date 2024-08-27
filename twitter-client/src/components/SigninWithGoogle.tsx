@@ -24,7 +24,7 @@ const SigninWIthGoogle = () => {
       if(verifyGoogleToken) window.localStorage.setItem('__twitter_token', verifyGoogleToken)
   
       //invaidate query and again make request to get current user
-      await queryClient.invalidateQueries(["current-user"])
+      await queryClient.invalidateQueries({ queryKey: ['current-user'] });
 
     } catch(err){
       toast.error('Verification Failed')
