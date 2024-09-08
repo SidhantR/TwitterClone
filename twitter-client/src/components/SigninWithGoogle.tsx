@@ -20,7 +20,6 @@ const SigninWIthGoogle = () => {
       )
   
       toast.success('Verified Success')
-      console.log(verifyGoogleToken, '-------->verifyGoogleToken')
       if(verifyGoogleToken) window.localStorage.setItem('__twitter_token', verifyGoogleToken)
   
       //invaidate query and again make request to get current user
