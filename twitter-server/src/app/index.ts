@@ -32,7 +32,9 @@ export async function initServer() {
           },
           Mutation: {
             ...Tweet.resolvers.mutations
-          }
+          },
+          ...Tweet.resolvers.extraResolvers,
+          ...User.resolvers.extraResolvers,
         }
     })
     await graphqlServer.start()
