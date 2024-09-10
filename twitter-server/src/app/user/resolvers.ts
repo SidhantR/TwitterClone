@@ -65,9 +65,8 @@ const queries = {
 
 const extraResolvers = {
     User: {
-        tweets: (parent: User) => {
+        tweets: (parent: User) => 
             prismaClient.tweet.findMany({where: {author: {id: parent.id}}})
-        }
     }
 }
 
