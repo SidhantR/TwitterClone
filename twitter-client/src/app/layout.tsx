@@ -5,6 +5,9 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Toaster } from 'react-hot-toast';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import QueryProvider from "./QueryProvider";
+import TwitterLayout from "./twitterLayout";
+import NavSideBar from "@/components/NavSidebar";
+import InfoSideBar from "@/components/InfoSideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 const quickSand = Quicksand({ subsets: ["latin"] })
@@ -24,7 +27,13 @@ export default function RootLayout({
       <body className={quickSand.className}>
         <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID || ''}>
           <QueryProvider>
-            {children}
+            <div className="grid grid-cols-12 h-screen w-screen px-56">
+              <NavSideBar />
+              <div className="col-span-5 border-r-[1px] border-l-[1px] h-screen overflow-scroll border-gray-600 ">
+                {children}
+              </div>
+              <InfoSideBar />
+            </div>
             <Toaster />
           </QueryProvider>
         </GoogleOAuthProvider>
@@ -32,3 +41,4 @@ export default function RootLayout({
     </html>
   );
 }
+
